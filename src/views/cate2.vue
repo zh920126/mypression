@@ -1,5 +1,5 @@
 <template>
-  <div></div>
+  <div class="index">这里是商品管理2页面</div>
 </template>
 
 <script>
