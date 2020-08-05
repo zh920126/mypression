@@ -68,9 +68,9 @@ export default {
             this.$store.commit('getToken', res.data.data.userInfo.token)
             this.$store.commit('getUserInfo', res.data.data.userInfo)
             this.$store.commit('userRights', res.data.rights)
-            this.$router.push({ name: 'Index' })
             // 根据用户权限动态渲染路由
             initDynamicRouter()
+            this.$router.push({ name: 'Index' })
           } else {
             this.$message({
               type: 'warning',

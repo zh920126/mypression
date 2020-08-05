@@ -6,6 +6,7 @@
 
 <script>
 import { initDynamicRouter } from './router/index'
+
 export default {
   name: 'App',
   created () {
