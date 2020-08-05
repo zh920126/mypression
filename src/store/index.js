@@ -7,7 +7,8 @@ export default new Vuex.Store({
   state: {
     token: sessionStorage.getItem('token') || '',
     userinfo: JSON.parse(sessionStorage.getItem('userInfo')) || {},
-    userRights: JSON.parse(sessionStorage.getItem('userRights')) || []
+    userRights: JSON.parse(sessionStorage.getItem('userRights')) || [],
+    userTabs: JSON.parse(sessionStorage.getItem('userTabs') || '[]')
   },
   mutations: {
     getToken (state, data) {
@@ -21,9 +22,18 @@ export default new Vuex.Store({
     userRights (state, data) {
       state.userRights = data
       sessionStorage.setItem('userRights', JSON.stringify(data))
+    },
+    useraddTabs (state, data) {
+      state.userTabs = data
+      sessionStorage.setItem('userTabs', JSON.stringify(data))
     }
+
   },
   actions: {
+
+  },
+  getters: {
+
   },
   modules: {
   }

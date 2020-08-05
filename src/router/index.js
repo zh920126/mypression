@@ -40,29 +40,33 @@ const routes = [{
 const asyncRoutes = {
   user1: {
     path: 'user1',
-    name: 'User',
-    component: () => import('../views/user1.vue')
+    name: 'User1',
+    component: () => import('../views/user1.vue'),
+    meta: { keepAlive: false, name: '用户列表' }
   },
   user2: {
     path: 'user2',
     name: 'User2',
-    component: () => import('@/views/user2.vue')
+    component: () => import('@/views/user2.vue'),
+    meta: { keepAlive: false, name: '用户信息' }
   },
   juese: {
     path: 'juese',
     name: 'Juese',
-    component: () => import('@/views/juese.vue')
+    component: () => import('@/views/juese.vue'),
+    meta: { keepAlive: false, name: '角色信息' }
   },
   cate1: {
     path: 'cate1',
     name: 'Cate1',
-    component: () => import('@/views/cate1.vue')
+    component: () => import('@/views/cate1.vue'),
+    meta: { keepAlive: false, name: '商品管理' }
   },
   cate2: {
     path: 'cate2',
     name: 'Cate2',
     component: () => import('@/views/cate1.vue'),
-    meta: { keepAlive: false }
+    meta: { keepAlive: false, name: '商品分类' }
   }
 }
 
@@ -72,6 +76,28 @@ const router = new VueRouter({
 
 // 导航守卫
 router.beforeEach((to, from, next) => {
+  if (to.meta.name) {
+    const { name, meta } = to
+    const items = {
+      name: meta.name,
+      path: name.toLowerCase()
+    }
+    const tabs = JSON.parse(sessionStorage.getItem('userTabs')) || []
+    if (tabs.length === 0) {
+      tabs.push(items)
+    } else {
+      let num = 0
+      tabs.forEach(v => {
+        if (v.name === items.name) {
+          num += 1
+        }
+      })
+      if (num === 0) {
+        tabs.push(items)
+      }
+    }
+    store.commit('useraddTabs', tabs)
+  }
   if (to.path === '/login') {
     next()
   } else {

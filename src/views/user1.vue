@@ -1,5 +1,5 @@
 <template>
-  <div class="index">这里是用户管理1页面</div>
+  <div class="index">这里是用户列表页面</div>
 </template>
 
 <script>
