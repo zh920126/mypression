@@ -28,7 +28,6 @@ export default {
       const arr = this.userTabs
       this.$emit('removeRoute', arr[i])
       arr.splice(i, 1)
-      // 发送事件给父元素
       this.$store.commit('useraddTabs', arr)
     },
     handleto (v) {

@@ -65,7 +65,7 @@ const asyncRoutes = {
   cate2: {
     path: 'cate2',
     name: 'Cate2',
-    component: () => import('@/views/cate1.vue'),
+    component: () => import('@/views/cate2.vue'),
     meta: { keepAlive: false, name: '商品分类' }
   }
 }
@@ -116,6 +116,10 @@ const originalPush = VueRouter.prototype.push
 VueRouter.prototype.push = function push (location) {
   return originalPush.call(this, location).catch(err => err)
 }
+router.selfaddRoutes = function (params) {
+  router.matcher = new VueRouter().matcher
+  router.addRoutes(params)
+}
 
 export const initDynamicRouter = () => {
   const currentRoutes = router.options.routes
@@ -134,10 +138,6 @@ export const initDynamicRouter = () => {
       component: () => import('@/views/404.vue')
     })
   router.selfaddRoutes(currentRoutes)
-}
-router.selfaddRoutes = function (params) {
-  router.matcher = new VueRouter().matcher
-  router.addRoutes(params)
 }
 
 export default router

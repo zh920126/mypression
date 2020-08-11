@@ -62,7 +62,7 @@
             active-text-color="#ffd04b"
           >
             <el-submenu :index="String(value.id)" v-for="(value,index) in meauItems" :key="index">
-              <template slot="title">
+              <template slot="title" >
                 <i :class="value.icon"></i>
                 <span>{{value.authName}}</span>
               </template>
@@ -164,6 +164,7 @@ export default {
   padding: 0;
   line-height: 1.2!important;
 }
+
 /deep/.el-header {
   background-color: #b3c0d1;
   display: flex;
@@ -201,7 +202,7 @@ export default {
   .el-menu {
     // width: 200px;
   }
-  /deep/.el-menu-item-group__title {
+  /deep/.el-menu-item-group .el-menu-item-group__title {
     padding: 0 !important;
   }
 }
